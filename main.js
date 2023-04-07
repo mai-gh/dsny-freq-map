@@ -13,6 +13,7 @@ const VectorSource = ol.source.Vector;
 const Style = ol.style.Style;
 const Stroke = ol.style.Stroke;
 const Fill = ol.style.Fill;
+const Text = ol.style.Text;
 
 useGeographic();
 const map = new Map({
@@ -30,15 +31,34 @@ const map = new Map({
         url: "./data.json",
         format: new GeoJSON(),
       }),
-      style: new Style({
-        stroke: new Stroke({
-          color: "green",
-          width: 2,
-        }),
-        fill: new Fill({
-          color: "rgba(0, 255, 0, 0.4)",
-        }),
-      }),
+      style: (feature) => {
+        const labelStyle = new Style({
+          text: new Text({
+            font: '13px Calibri,sans-serif',
+            stroke: new Stroke({
+              color: '#fff',
+              width: 8,
+            }),
+          }),
+        });
+        const zoneStyle = new Style({
+          stroke: new Stroke({
+            color: "green",
+            width: 2,
+          }),
+          fill: new Fill({
+            color: "rgba(0, 255, 0, 0.4)",
+          }),
+        });
+        labelStyle.getText().setText([
+        `Trash: ${feature.get('refuse')}`, '',
+        '\n', '',
+        `Bulk: ${feature.get('bulk')}`, '',
+        '\n', '',
+        `Recycling: ${feature.get('recycling')}`, '',
+        ]);
+        return [zoneStyle, labelStyle]
+      },
     }),
   ],
 });
