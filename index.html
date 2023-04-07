@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+
+    <link href="data:image/x-icon" rel="icon" />
+    <title>dsny pickup days</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/geojson-vt@3.2.0/geojson-vt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ol@7.2.2/dist/ol.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/ol@7.2.2/ol.min.css" rel="stylesheet">
+    <style>
+      .map {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+
+      .ol-attribution {
+        align-items: end;
+        text-align: left;
+      }
+      .ol-attribution button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      @keyframes spinner {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .spinner:after {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        margin-top: -20px;
+        margin-left: -20px;
+        border-radius: 50%;
+        border: 5px solid rgba(180, 180, 180, 0.6);
+        border-top-color: rgba(0, 0, 0, 0.6);
+        animation: spinner 0.6s linear infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" class="map" />
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
